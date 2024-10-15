@@ -1,0 +1,16 @@
+.todo-logo {
+  width: 200px;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.links-container {
+  display: flex;
+  align-items: center;
+}
+.link {
+  margin-right: 13px;
+  font-size: 20px;
+}
