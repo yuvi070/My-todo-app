@@ -6,6 +6,7 @@ import "./index.css";
 class Home extends Component {
   state = {
     todoList: [],
+    inputText: "",
   };
 
   componentDidMount() {
@@ -13,8 +14,17 @@ class Home extends Component {
     this.setState({ todoList: existData });
   }
 
+  onChangeInputText = (event) => {
+    this.setState({ inputText: event.target.value });
+  };
+
+  onSubmitForm = (event) => {
+    event.preventDefault();
+    const { inputText } = this.state;
+  };
+
   render() {
-    const { todoList } = this.state;
+    const { todoList, inputText } = this.state;
     const myArray = ["Workout", "Study"];
     const stringifiedArray = JSON.stringify(myArray);
     localStorage.setItem("myData", stringifiedArray);
@@ -23,11 +33,13 @@ class Home extends Component {
         <div className="body">
           <Header />
           <div>
-            <form className="add-task-container">
+            <form className="add-task-container" onSubmit={this.onSubmitForm}>
               <input
                 type="text"
                 className="input-element"
                 placeholder="Add Task"
+                onChange={this.onChangeInputText}
+                value={inputText}
               />
               <button type="submit" className="add-task-button">
                 Add
